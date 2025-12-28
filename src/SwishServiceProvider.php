@@ -2,6 +2,7 @@
 
 namespace AndreasKviby\LaravelSwish;
 
+use AndreasKviby\LaravelSwish\Exceptions\ConfigurationException;
 use AndreasKviby\LaravelSwish\Support\Certificate;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,7 +37,7 @@ class SwishServiceProvider extends ServiceProvider
 
             // Välj endpoint baserat på miljö
             $endpoint = $config['endpoints'][$config['environment']] 
-                ?? throw new \RuntimeException("Ogiltig Swish-miljö: {$config['environment']}. Tillåtna värden: production, test");
+                ?? throw new ConfigurationException("Ogiltig Swish-miljö: {$config['environment']}. Tillåtna värden: production, test");
 
             // Skapa och returnera SwishClient
             return new SwishClient(

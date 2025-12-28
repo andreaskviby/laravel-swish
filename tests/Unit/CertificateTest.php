@@ -16,6 +16,8 @@ class CertificateTest extends TestCase
         parent::setUp();
 
         // Skapa temporära certifikatfiler för test
+        // Vi använder fake innehåll eftersom vi endast testar Certificate-klassens
+        // validering och konfiguration, inte faktisk SSL-funktionalitet
         $this->tempCertPath = sys_get_temp_dir() . '/test-client-cert.pem';
         $this->tempRootCertPath = sys_get_temp_dir() . '/test-root-cert.pem';
 
