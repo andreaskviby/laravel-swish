@@ -72,10 +72,6 @@ class Payout
         $this->callbackUrl = $data['callbackUrl'] ?? '';
         $this->payerPaymentReference = $data['payerPaymentReference'] ?? null;
         $this->signingCertificateSerialNumber = $data['signingCertificateSerialNumber'] ?? null;
-
-        if (!empty($data)) {
-            $this->validate();
-        }
     }
 
     /**

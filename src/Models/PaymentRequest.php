@@ -72,10 +72,6 @@ class PaymentRequest
         $this->callbackUrl = $data['callbackUrl'] ?? '';
         $this->payerPaymentReference = $data['payerPaymentReference'] ?? null;
         $this->payeePaymentReference = $data['payeePaymentReference'] ?? null;
-
-        if (!empty($data)) {
-            $this->validate();
-        }
     }
 
     /**

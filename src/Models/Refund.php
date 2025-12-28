@@ -72,10 +72,6 @@ class Refund
         $this->message = $data['message'] ?? '';
         $this->callbackUrl = $data['callbackUrl'] ?? '';
         $this->payerPaymentReference = $data['payerPaymentReference'] ?? null;
-
-        if (!empty($data)) {
-            $this->validate();
-        }
     }
 
     /**

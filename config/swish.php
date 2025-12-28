@@ -94,4 +94,16 @@ return [
 
     'verify_ssl' => env('SWISH_VERIFY_SSL', true),
 
+    /*
+    |--------------------------------------------------------------------------
+    | QR-kod URL
+    |--------------------------------------------------------------------------
+    |
+    | URL för Swish QR-kod generering. Denna URL används för att generera
+    | QR-koder som kunder kan skanna för att betala.
+    |
+    */
+
+    'qr_code_url' => env('SWISH_QR_CODE_URL', 'https://mpc.getswish.net/qrg-swish/api/v1/prefilled'),
+
 ];

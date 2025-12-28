@@ -48,22 +48,30 @@ class SwishClient
     protected bool $verifySSL;
 
     /**
+     * @var string QR-kod URL
+     */
+    protected string $qrCodeUrl;
+
+    /**
      * Skapa en ny SwishClient-instans
      *
      * @param Certificate $certificate
      * @param string $endpoint
      * @param bool $verifySSL
      * @param int $timeout
+     * @param string|null $qrCodeUrl
      */
     public function __construct(
         Certificate $certificate,
         string $endpoint = self::TEST_ENDPOINT,
         bool $verifySSL = true,
-        int $timeout = 30
+        int $timeout = 30,
+        ?string $qrCodeUrl = null
     ) {
         $this->certificate = $certificate;
         $this->endpoint = rtrim($endpoint, '/');
         $this->verifySSL = $verifySSL;
+        $this->qrCodeUrl = $qrCodeUrl ?? 'https://mpc.getswish.net/qrg-swish/api/v1/prefilled';
 
         $config = array_merge(
             [
@@ -214,7 +222,6 @@ class SwishClient
      */
     public function generateQRCode(string $token, string $format = 'svg', int $size = 300): string
     {
-        $url = "https://mpc.getswish.net/qrg-swish/api/v1/prefilled";
         $params = [
             'token' => $token,
             'format' => $format,
@@ -224,7 +231,7 @@ class SwishClient
             $params['size'] = $size;
         }
 
-        return $url . '?' . http_build_query($params);
+        return $this->qrCodeUrl . '?' . http_build_query($params);
     }
 
     /**

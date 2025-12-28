@@ -35,14 +35,16 @@ class SwishServiceProvider extends ServiceProvider
             );
 
             // Välj endpoint baserat på miljö
-            $endpoint = $config['endpoints'][$config['environment']] ?? SwishClient::TEST_ENDPOINT;
+            $endpoint = $config['endpoints'][$config['environment']] 
+                ?? throw new \RuntimeException("Ogiltig Swish-miljö: {$config['environment']}. Tillåtna värden: production, test");
 
             // Skapa och returnera SwishClient
             return new SwishClient(
                 $certificate,
                 $endpoint,
                 $config['verify_ssl'] ?? true,
-                $config['timeout'] ?? 30
+                $config['timeout'] ?? 30,
+                $config['qr_code_url'] ?? null
             );
         });
 
