@@ -1,0 +1,17 @@
+/vendor/
+/node_modules/
+.env
+.env.backup
+.phpunit.result.cache
+composer.lock
+phpunit.xml.cache
+.DS_Store
+Thumbs.db
+*.pem
+*.p12
+*.crt
+*.key
+/coverage/
+/.idea/
+/.vscode/
+*.log
